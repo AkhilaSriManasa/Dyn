@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+
+
+    <style>
+
+        #demo_res{
+        color: black;
+      padding: 8px 16px;
+      border: 1px solid transparent;
+      border-radius: 15px;
+      border-color:  rgba(0, 0, 0, 0.2); 
+     width: 60%;
+     height: 50px;
+     margin-bottom: 5px;
+    font-size: 30px;
+     text-align: center;
+    }
+    
+    .btn-info{
+        height: 30px;border-radius: 10px;width: 100px;text-align: center;padding: 5px;margin-top: 20px;
+        border: none;
+        background: #8A2BE2;
+        color: white;
+        margin-top: 20px;
+    }
+    
+    .btn-info:hover{
+        height: 30px;border-radius: 10px;width: 100px;text-align: center;padding: 5px;margin-top: 20px;
+        border: none;
+        background: rgb(88, 7, 163);
+        color: white;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+        /* width */
+        ::-webkit-scrollbar {
+          width: 6px;
+        }
+        
+        /* Track */
+        ::-webkit-scrollbar-track {
+          background: #f1f1f1; 
+        }
+         
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+          background: #888; 
+        }
+        
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+          background: #555; 
+        }
+        input:focus,
+    select:focus,
+    textarea:focus,
+    button:focus {
+        outline: none;
+    }
+    
+    .que{
+        cursor: pointer;
+    }
+    ::placeholder {
+      
+      opacity: 0.7; /* Firefox */
+    }
+
+    .check{
+	height: 30px;border-radius: 10px;width: 100px;text-align: center;padding: 5px;margin-top: 20px;
+	border: none;
+	background: #8A2BE2;
+	color: white;
+	margin: 15px;
+    margin-left: 750px;
+    position: fixed;
+    
+}
+
+.check:hover{
+	height: 30px;border-radius: 10px;width: 100px;text-align: center;padding: 5px;margin-top: 20px;
+	border: none;
+	background: rgb(88, 7, 163);
+	color: white;
+	cursor: pointer;
+    margin: 15px;
+	margin-left: 750px;
+}
+
+    textarea{
+        width: 100%;
+    }
+
+    div.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: yellow;
+  padding: 50px;
+  font-size: 20px;
+}
+
+
+        </style>
+
+<script>
+    function toggle_visibility(id) {
+        var e = document.getElementById(id);
+        if(e.style.display == 'block')
+           e.style.display = 'none';
+        else
+           e.style.display = 'block';
+     }
+     </script>
+
+
+</head>
+<body>
+
+    <button class="check" onclick="toggle_visibility('answers');">Check</button>
+
+    <div style="text-align: left; width: 45%;float:left;margin-left: 4%;margin-top:50px;">
+	
+		
+
+	
+
+	
+		<div class="questions" style=" width: 90%; padding: 20px;margin: auto;;">
+            <h2 style="color:black;text-align: center;margin-bottom: 10px;"><b>Questions</b></h2>
+            
+		{%for i in j_data['questions']:%}
+			{% if loop.index0 < j_data['questions']|length %}
+			
+			<h3 onclick="toggle_visibility('ui{{loop.index0+1}}');"  style="padding: 10px; text-decoration: none;" class="que" >{{loop.index0+1}}{{"   "}}{{i['question']}}</h3>
+				<!-- <a target = "_blank" href=https://stackoverflow.com/{{i['link']}} class="quelink" style="text-decoration: none;" ></j_qdata> -->
+					<textarea id = ui{{loop.index0+1}} style="display: block;border: #d3d3d3 solid 0.2mm; font-size: 20px;line-height: 150%; padding: 10px; margin-top: 0px; height: 180px; overflow: auto;text-align: justify;color: black;" class="ans"></textarea>
+				<!-- </a> -->
+			{% endif %}
+		{% endfor %}
+        </div>
+
+        
+        
+
+    </div>
+
+    <div style="text-align: left; width: 45%;float:right;margin-left: 0%;margin-top:50px;">
+        <div id="answers" style=" display: none;text-align: left;width: 90%; padding: 20px;margin-left: 0;">
+            <h2 style="color:black;text-align: center;margin-bottom: 10px;"><b>Answers</b></h2>
+            {%for i in j_data['questions']:%}
+                {% if loop.index0 < j_data['questions']|length %}
+                
+                <!-- <h3  style="padding: 10px; text-decoration: none;" class="que" >{{loop.index0+1}}{{"   "}}{{i['question']}}</h3> -->
+                    <!-- <a target = "_blank" href=https://stackoverflow.com/{{i['link']}} class="quelink" style="text-decoration: none;" ></j_qdata> -->
+                        <p id = uo{{loop.index0+1}} style="display: block;border: #d3d3d3 solid 0.2mm;font-size: 20px;line-height: 150%; padding: 10px; margin-top: 80px; height: 180px; overflow: auto;text-align: justify;color: black;" class="ans">{{loop.index0+1}}{{"   "}}{{i['c_ans']}}</p>
+                    <!-- </a> -->
+                {% endif %}
+            {% endfor %}
+            </div>
+
+	
+
+	
+		
+
+
+
+
+    </div>
+    
+
+
+</body>
+</html>
