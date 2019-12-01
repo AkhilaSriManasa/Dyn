@@ -11,6 +11,9 @@ import lda  #lda module for ease of usage
 import webbrowser
 #Database connection from here
 import sqlite3
+import nltk
+nltk.download('stopwords')
+nltk.download('wordnet')
 ##############################
 
 
